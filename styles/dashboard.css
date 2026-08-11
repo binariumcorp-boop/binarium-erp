@@ -1,0 +1,19 @@
+/* ============================================================
+   DASHBOARD
+   Estilos especificos do dashboard: stats/stat-cards
+   Extraido de DOC-20260805-WA0010.html sem alteracao de conteudo.
+   ============================================================ */
+
+/* ===== STATS ===== */
+.stats-row{display:grid;gap:16px}
+.stats-4{grid-template-columns:repeat(4,1fr)}
+.stats-5{grid-template-columns:repeat(5,1fr)}
+.stats-3{grid-template-columns:repeat(3,1fr)}
+.stats-6{grid-template-columns:repeat(6,1fr)}
+.stats-8{grid-template-columns:repeat(8,1fr)}
+.stat-card{background:#fff;border-radius:10px;border:1px solid var(--gray200);padding:16px;display:flex;align-items:center;gap:14px}
+.stat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.stat-label{font-size:11px;color:var(--gray400);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.stat-value{font-size:20px;font-weight:700;color:var(--gray900)}
+.stat-sub{font-size:11px;color:var(--gray400);margin-top:2px}
+

@@ -1,0 +1,31 @@
+/* ============================================================
+   GLOBAL
+   Utilitarios globais: empty-state, clickable, text-*, mb-*, flex, etc.
+   Extraido de DOC-20260805-WA0010.html sem alteracao de conteudo.
+   ============================================================ */
+
+/* ===== MISC ===== */
+.empty-state{text-align:center;padding:40px;color:var(--gray400)}
+.empty-state svg{margin-bottom:12px;opacity:.4}
+.empty-state p{font-size:14px}
+.clickable{cursor:pointer}
+.clickable:hover{text-decoration:underline;color:var(--blue)}
+.text-muted{color:var(--gray400);font-size:12px}
+.fw-600{font-weight:600}
+.fw-700{font-weight:700}
+.text-green{color:var(--green)}
+.text-red{color:var(--red)}
+.text-amber{color:var(--amber)}
+.text-blue{color:var(--blue)}
+.mb-0{margin-bottom:0}
+.mb-4{margin-bottom:4px}
+.mb-8{margin-bottom:8px}
+.mb-12{margin-bottom:12px}
+.mb-16{margin-bottom:16px}
+.mb-20{margin-bottom:20px}
+.gap-10{gap:10px}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.w-full{width:100%}

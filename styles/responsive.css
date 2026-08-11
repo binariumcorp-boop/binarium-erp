@@ -1,0 +1,77 @@
+/* ============================================================
+   RESPONSIVE & THEME
+   Media queries de responsividade, scrollbar, dark mode (tema padrao do sistema), print
+   Extraido de DOC-20260805-WA0010.html sem alteracao de conteudo.
+   ============================================================ */
+
+/* ===== RESPONSIVIDADE ===== */
+@media(max-width:768px){
+  .sidebar{position:fixed;left:-220px;z-index:500;transition:left .25s}
+  .sidebar.mobile-open{left:0}
+  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:499}
+  .sidebar-overlay.show{display:block}
+  .main{width:100%}
+  .stats-4,.stats-5,.stats-3,.stats-6,.stats-8{grid-template-columns:1fr 1fr}
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .topbar{padding:0 16px}
+  .content{padding:16px}
+  .modal{width:95vw}
+  .login-right{display:none}
+  .login-left{width:100%;min-width:0}
+}
+@media(max-width:480px){
+  .stats-4,.stats-5,.stats-3,.stats-6,.stats-8{grid-template-columns:1fr}
+  .filters-row{flex-direction:column;align-items:stretch}
+  .search-box{min-width:0}
+}
+
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(100,116,139,.3);border-radius:2px}
+
+
+/* =====================================================================
+   MODO ESCURO (DARK MODE) — tema padrão do sistema
+   ===================================================================== */
+:root{
+  --gray50:#141c2e;--gray100:#1b2436;--gray200:#2a3448;
+  --gray400:#8b96ab;--gray600:#b0b9cc;--gray800:#e8ecf4;--gray900:#f8fafc;
+  --blue-light:rgba(59,109,255,.18);--green-light:rgba(16,185,129,.16);
+  --red-light:rgba(248,81,73,.16);--amber-light:rgba(245,158,11,.18);
+  --surface:#141c2e;--surface-2:#101828;--page-bg:#0a0f1c;
+}
+html,body{background:var(--page-bg)}
+body{color:var(--gray800)}
+.card,.stat-card,.topbar,.modal,.modal-header,.modal-footer,.search-box,.select-box,.form-input,.detail-panel,.confirm-box{background:var(--surface)!important}
+.card,.stat-card,.detail-panel{box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.form-input option{background:var(--surface);color:var(--gray800)}
+tr:hover td{background:var(--gray50)}
+.badge-green{color:#4ade80}
+.badge-blue{color:#8ab4ff}
+.badge-amber{color:#fbbf24}
+.badge-red{color:#f87171}
+.badge-gray{color:var(--gray600)}
+.alert-warn{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);color:#fbbf24}
+.alert-info{background:rgba(59,109,255,.10);border:1px solid rgba(59,109,255,.35);color:#8ab4ff}
+.alert-danger{background:rgba(248,81,73,.10);border:1px solid rgba(248,81,73,.35);color:#f87171}
+.toast{background:#1b2436}
+.modal-overlay{background:rgba(0,0,0,.6)}
+/* Login */
+.login-left{background:var(--page-bg)}
+.login-card{background:var(--surface);box-shadow:0 4px 24px rgba(0,0,0,.5)}
+.lcard-brand,.lcard-title{color:var(--gray900)}
+.lcard-desc{color:var(--gray400)}
+.lf-label{color:var(--gray600)}
+.lf-icon,.lf-eye{color:var(--gray400)}
+.lf-input{background:var(--surface-2);color:var(--gray800);border-color:var(--gray200)}
+.lf-input::placeholder{color:#5b6a84}
+.lf-social{background:var(--surface-2);color:var(--gray600);border-color:var(--gray200)}
+.lf-social:hover{background:var(--gray100)}
+.lf-divider{color:var(--gray400)}
+.lf-divider::before,.lf-divider::after{background:var(--gray200)}
+.lf-footer{color:var(--gray400)}
+.lf-error{background:rgba(248,81,73,.12);border-color:rgba(248,81,73,.4)}
+::-webkit-scrollbar-thumb{background:rgba(148,163,184,.25)}
+

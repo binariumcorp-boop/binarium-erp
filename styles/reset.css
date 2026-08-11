@@ -1,0 +1,8 @@
+/* ============================================================
+   RESET
+   Reset universal de margin/padding/box-sizing
+   Extraido de DOC-20260805-WA0010.html sem alteracao de conteudo.
+   ============================================================ */
+
+
+*{margin:0;padding:0;box-sizing:border-box}

@@ -1,0 +1,10 @@
+{
+  "liveServer.settings.root": "/",
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "files.exclude": {
+    "**/.DS_Store": true
+  }
+}

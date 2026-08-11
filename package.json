@@ -1,0 +1,9 @@
+{
+  "name": "vortex-erp",
+  "version": "1.0.0",
+  "description": "VORTEX ERP — código-fonte estático (HTML/CSS/JS puro, sem build).",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 8000"
+  }
+}
