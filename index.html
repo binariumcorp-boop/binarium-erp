@@ -1395,429 +1395,315 @@
 <!-- Modal Nova Obra -->
 <div class="modal-overlay" id="modal-nova-obra">
   <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="obra-modal-title">Nova Obra</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
+
+    <div class="modal-header">
+      <h3 style="font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--blue-light);font-size:14px">
+          🏗️
+        </span>
+        <span id="obra-modal-title">Nova Obra</span>
+      </h3>
+
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="modal-body" style="padding-top:0">
+
       <input type="hidden" id="obra-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Nome da Escola / Obra *</label><input class="form-input" id="obra-nome" placeholder="Ex: E.E. Visconde do Cairu"></div>
-        <div class="form-group"><label class="form-label">Código *</label><input class="form-input" id="obra-codigo" placeholder="Ex: OBR-001"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Município *</label><input class="form-input" id="obra-municipio" placeholder="Ex: Santa Rosa – RS"></div>
-        <div class="form-group"><label class="form-label">Tipo de Licitação</label><select class="form-input" id="obra-licitacao"><option>Pregão Eletrônico</option><option>Concorrência</option><option>Tomada de Preços</option><option>Convite</option><option>Dispensa</option><option>Inexigibilidade</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Objeto / Descrição</label><textarea class="form-input" id="obra-objeto" rows="2" placeholder="Descreva o objeto da obra..."></textarea></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Responsável</label><input class="form-input" id="obra-responsavel" value="Ysmael Q. Nunes"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="obra-status"><option>Planejada</option><option>Em Andamento</option><option>Concluindo</option><option>Concluída</option><option>Paralisada</option><option>Atrasada</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Valor Contratado (R$) *</label><input class="form-input" id="obra-valor" type="number" placeholder="0.00" min="0"></div>
-        <div class="form-group"><label class="form-label">Progresso (%)</label><input class="form-input" id="obra-progresso" type="number" placeholder="0" min="0" max="100"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Data de Início</label><input class="form-input" id="obra-inicio" type="date"></div>
-        <div class="form-group"><label class="form-label">Término Previsto</label><input class="form-input" id="obra-termino" type="date"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarObra()">💾 Salvar Obra</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Novo Serviço -->
-<div class="modal-overlay" id="modal-novo-servico">
-  <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="servico-modal-title">Novo Serviço</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="servico-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Nome do Serviço *</label><input class="form-input" id="serv-nome" placeholder="Ex: Reforma Banheiros – Bloco B"></div>
-        <div class="form-group"><label class="form-label">Obra *</label><select class="form-input" id="serv-obra"></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Etapa</label><input class="form-input" id="serv-etapa" placeholder="Ex: Revestimentos"></div>
-        <div class="form-group"><label class="form-label">Responsável</label><input class="form-input" id="serv-responsavel" placeholder="Nome do responsável"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Valor Contratado (R$)</label><input class="form-input" id="serv-valor-cont" type="number" placeholder="0.00" min="0" oninput="calcLucroServico()"></div>
-        <div class="form-group"><label class="form-label">Custo Orçado (R$)</label><input class="form-input" id="serv-custo-orc" type="number" placeholder="0.00" min="0" oninput="calcLucroServico()"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Lucro Previsto</label><input class="form-input" id="serv-lucro-prev" readonly style="background:var(--gray50)"></div>
-        <div class="form-group"><label class="form-label">Margem Prevista</label><input class="form-input" id="serv-margem-prev" readonly style="background:var(--gray50)"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Data Prevista de Início</label><input class="form-input" id="serv-inicio" type="date"></div>
-        <div class="form-group"><label class="form-label">Data Prevista de Conclusão</label><input class="form-input" id="serv-prazo" type="date"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Data Real de Início</label><input class="form-input" id="serv-inicio-real" type="date"></div>
-        <div class="form-group"><label class="form-label">Data Real de Conclusão</label><input class="form-input" id="serv-fim-real" type="date"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Progresso (%)</label><input class="form-input" id="serv-progresso" type="number" placeholder="0" min="0" max="100"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="serv-status"><option>Pendente</option><option>Em Andamento</option><option>Atrasado</option><option>Concluído</option></select></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarServico()">💾 Salvar Serviço</button>
-    </div>
-  </div>
-</div>
+      <div class="tabs" id="nov-tabs" style="margin:0 0 16px 0;flex-wrap:nowrap;overflow-x:auto">
 
-<!-- Modal Novo Colaborador -->
-<div class="modal-overlay" id="modal-novo-colaborador">
-  <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="colab-modal-title">Novo Colaborador</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="colab-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Nome Completo *</label><input class="form-input" id="colab-nome" placeholder="Nome completo"></div>
-        <div class="form-group"><label class="form-label">CPF *</label><input class="form-input" id="colab-cpf" placeholder="000.000.000-00" oninput="formatCPF(this)" maxlength="14"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Função *</label><input class="form-input" id="colab-funcao" placeholder="Ex: Pedreiro, Eletricista..."></div>
-        <div class="form-group"><label class="form-label">Telefone</label><input class="form-input" id="colab-tel" placeholder="(00) 00000-0000"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="colab-obra"></select></div>
-        <div class="form-group"><label class="form-label">Data de Admissão</label><input class="form-input" id="colab-admissao" type="date"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="colab-status"><option value="Ativo">Ativo</option><option value="Inativo">Inativo</option></select></div>
-        <div class="form-group"><label class="form-label">Salário (R$)</label><input class="form-input" id="colab-salario" type="number" placeholder="0.00" min="0"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Observações</label><textarea class="form-input" id="colab-obs" rows="2" placeholder="Observações sobre o colaborador..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarColaborador()">💾 Salvar Colaborador</button>
-    </div>
-  </div>
-</div>
+        <div class="tab active">📋 Dados Gerais</div>
 
-<!-- Modal Nova Movimentação Financeira -->
-<div class="modal-overlay" id="modal-nova-movimentacao">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="mov-modal-title">Nova Movimentação</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="mov-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Tipo *</label><select class="form-input" id="mov-tipo"><option value="entrada">Entrada</option><option value="saida">Saída</option></select></div>
-        <div class="form-group"><label class="form-label">Data *</label><input class="form-input" id="mov-data" type="date"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Descrição *</label><input class="form-input" id="mov-descricao" placeholder="Ex: Medição #3 – E.E. Visconde do Cairu"></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="mov-obra"></select></div>
-        <div class="form-group"><label class="form-label">Categoria</label><select class="form-input" id="mov-categoria"><option value="Medição">Medição</option><option value="Folha">Folha</option><option value="Material">Material</option><option value="Contrato">Contrato</option><option value="Outros">Outros</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Valor (R$) *</label><input class="form-input" id="mov-valor" type="number" placeholder="0.00" min="0" step="0.01"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="mov-status"><option value="Pago">Pago/Recebido</option><option value="Pendente">Pendente</option><option value="Cancelado">Cancelado</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Fornecedor</label><select class="form-input" id="mov-fornecedor"><option value="">Nenhum</option></select></div>
-      <div class="form-group">
-        <label class="form-label">Comprovante / Documento</label>
-        <input type="file" class="form-input" id="mov-comprovante" accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx" onchange="handleMovComprovante(event)">
-        <div id="mov-comprovante-preview" style="margin-top:6px;font-size:12px;color:var(--gray400)"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Observações</label><textarea class="form-input" id="mov-obs" rows="2" placeholder="Observações..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarMovimentacao()">💾 Salvar</button>
-    </div>
-  </div>
-</div>
+        <div class="tab">
+          🗂️ Central Técnica de Documentos
+        </div>
 
-<!-- Modal Novo Item Estoque -->
-<div class="modal-overlay" id="modal-novo-item-estoque">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="est-modal-title">Novo Item – Estoque</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="est-edit-id">
-      <div class="form-group"><label class="form-label">Nome do Item *</label><input class="form-input" id="est-nome" placeholder="Ex: Cimento Portland CP-II"></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Categoria</label><select class="form-input" id="est-categoria"><option>Material</option><option>Revestimento</option><option>Pintura</option><option>Elétrico</option><option>Hidráulico</option><option>Esquadria</option><option>Ferramenta</option></select></div>
-        <div class="form-group"><label class="form-label">Unidade</label><select class="form-input" id="est-unidade"><option>Saco</option><option>m²</option><option>m³</option><option>Unidade</option><option>Rolo</option><option>Lata</option><option>kg</option><option>L</option><option>m</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Quantidade Atual</label><input class="form-input" id="est-qtd" type="number" placeholder="0" min="0"></div>
-        <div class="form-group"><label class="form-label">Estoque Mínimo</label><input class="form-input" id="est-minimo" type="number" placeholder="0" min="0"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Valor Unitário (R$)</label><input class="form-input" id="est-valor-unit" type="number" placeholder="0.00" min="0" step="0.01"></div>
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="est-obra"></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Fornecedor</label><select class="form-input" id="est-fornecedor"><option value="">Selecione o fornecedor</option></select></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarItemEstoque()">💾 Cadastrar Item</button>
-    </div>
-  </div>
-</div>
+        <div class="tab">
+          📑 Contrato
+        </div>
 
-<!-- Modal Movimentação Estoque -->
-<div class="modal-overlay" id="modal-movimentacao-estoque">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600">Movimentação de Estoque</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">Item *</label><select class="form-input" id="mov-est-item"></select></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Tipo *</label><select class="form-input" id="mov-est-tipo"><option value="entrada">Entrada</option><option value="saida">Saída</option><option value="transferencia">Transferência</option></select></div>
-        <div class="form-group"><label class="form-label">Quantidade *</label><input class="form-input" id="mov-est-qtd" type="number" placeholder="0" min="1"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Data</label><input class="form-input" id="mov-est-data" type="date"></div>
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="mov-est-obra"></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Observação</label><textarea class="form-input" id="mov-est-obs" rows="2" placeholder="Motivo da movimentação..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarMovEstoque()">💾 Registrar</button>
-    </div>
-  </div>
-</div>
+        <div class="tab">
+          💰 Financeiro
+        </div>
 
-<!-- Modal Novo Registro Diário -->
-<div class="modal-overlay" id="modal-novo-diario">
-  <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="diario-modal-title">Novo Registro – Diário de Obra</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="diario-edit-id">
-      <div class="diario-quickbar" id="diario-quickbar" style="display:none">
-        <button type="button" class="btn btn-ghost btn-sm" onclick="repetirUltimoRegistroDiario()">🔁 Repetir último registro desta obra</button>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Obra *</label><select class="form-input" id="diario-obra" onchange="aoTrocarObraDiario()"></select></div>
-        <div class="form-group"><label class="form-label">Data *</label><input class="form-input" id="diario-data" type="date"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Tipo</label><select class="form-input" id="diario-tipo" onchange="toggleDiarioOcorrencia()"><option>Atividade</option><option>Ocorrência</option><option>Inspeção</option><option>Reunião</option></select></div>
-        <div class="form-group"><label class="form-label">Clima</label><select class="form-input" id="diario-clima"><option>Ensolarado</option><option>Nublado</option><option>Chuvoso</option><option>Ventoso</option><option>Frio</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Título *</label><input class="form-input" id="diario-titulo" placeholder="Título do registro"></div>
-      <div class="form-group"><label class="form-label">Descrição</label><textarea class="form-input" id="diario-descricao" rows="3" placeholder="Descreva em detalhes o que foi executado..."></textarea></div>
+        <div class="tab">
+          👷 Equipe
+        </div>
 
-      <div id="diario-ocorrencia-wrap" style="display:none">
-        <div class="diario-ocorrencia-box form-group">
+        <div class="tab">
+          📝 Observações
+        </div>
+
+      </div>
+
+      <!-- ========================= -->
+      <!-- DADOS GERAIS -->
+      <!-- ========================= -->
+
+      <div id="nov-tab-gerais">
+
+        <div class="card">
+
+          <h4>Identificação</h4>
+
           <div class="form-row">
-            <div class="form-group" style="margin-bottom:0"><label class="form-label">Gravidade da Ocorrência</label><select class="form-input" id="diario-gravidade"><option value="Baixa">🟢 Baixa</option><option value="Média">🟡 Média</option><option value="Alta">🔴 Alta</option></select></div>
-            <div class="form-group" style="margin-bottom:0"><label class="form-label">Ação Tomada</label><input class="form-input" id="diario-acao-tomada" placeholder="Ex: Área isolada, EPI reforçado..."></div>
+
+            <div class="form-group">
+              <label>Nome da Escola / Obra *</label>
+              <input
+                class="form-input"
+                id="obra-nome"
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Código *</label>
+              <input
+                class="form-input"
+                id="obra-codigo"
+              >
+            </div>
+
           </div>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label>Município *</label>
+              <input
+                class="form-input"
+                id="obra-municipio"
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Tipo de Licitação</label>
+
+              <select
+                class="form-input"
+                id="obra-licitacao">
+
+                <option>Pregão Eletrônico</option>
+                <option>Concorrência</option>
+                <option>Tomada de Preços</option>
+                <option>Convite</option>
+                <option>Dispensa</option>
+                <option>Inexigibilidade</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label>Responsável</label>
+              <input
+                class="form-input"
+                id="obra-responsavel">
+            </div>
+
+            <div class="form-group">
+              <label>Status</label>
+
+              <select
+                class="form-input"
+                id="obra-status">
+
+                <option>Planejada</option>
+                <option>Em Andamento</option>
+                <option>Concluindo</option>
+                <option>Concluída</option>
+                <option>Paralisada</option>
+                <option>Atrasada</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
         </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Hora Início</label><input class="form-input" id="diario-hora-inicio" type="time" oninput="calcularHorasDiario()"></div>
-        <div class="form-group"><label class="form-label">Hora Fim</label><input class="form-input" id="diario-hora-fim" type="time" oninput="calcularHorasDiario()"></div>
-      </div>
-      <div id="diario-horas-resultado" class="diario-horas-box" style="display:none"></div>
+        <br>
 
-      <div class="form-group" style="margin-top:16px">
-        <div class="diario-equipe-head">
-          <label class="form-label" style="margin-bottom:0">Equipe Presente</label>
-          <div class="diario-equipe-actions"><a onclick="marcarTodaEquipeDiario(true)">Marcar todos</a><a onclick="marcarTodaEquipeDiario(false)">Limpar</a></div>
+        <div class="card">
+
+          <h4>Execução e Prazos</h4>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label>Valor Contratado</label>
+              <input
+                class="form-input"
+                id="obra-valor"
+                type="number">
+            </div>
+
+            <div class="form-group">
+              <label>Progresso (%)</label>
+              <input
+                class="form-input"
+                id="obra-progresso"
+                type="number">
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label>Data de Início</label>
+              <input
+                class="form-input"
+                id="obra-inicio"
+                type="date">
+            </div>
+
+            <div class="form-group">
+              <label>Término Previsto</label>
+              <input
+                class="form-input"
+                id="obra-termino"
+                type="date">
+            </div>
+
+          </div>
+
         </div>
-        <div class="diario-equipe-box" id="diario-equipe-box"><div class="diario-equipe-vazio">Selecione uma obra para listar a equipe.</div></div>
-        <div class="diario-equipe-count" id="diario-equipe-count">0 selecionado(s)</div>
+
       </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Colaboradores extras / terceirizados</label><input class="form-input" id="diario-colaboradores" type="number" placeholder="0" min="0" oninput="atualizarContadorEquipeDiario()"></div>
-        <div class="form-group"><label class="form-label">Responsável pelo Registro</label><input class="form-input" id="diario-responsavel" placeholder="Nome do responsável"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Equipamentos Utilizados</label><input class="form-input" id="diario-equipamentos" placeholder="Ex: Betoneira, Andaime..."></div>
-        <div class="form-group"><label class="form-label">Materiais Utilizados</label><input class="form-input" id="diario-materiais" placeholder="Ex: Cimento, Chapa 3mm..."></div>
-      </div>
-      <div class="form-group"><label class="form-label">Serviços Executados</label><textarea class="form-input" id="diario-servicos" rows="2" placeholder="Serviços realizados no dia..."></textarea></div>
-      <div class="form-group">
-        <label class="form-label">Fotos da Obra</label>
-        <div class="diario-foto-btns">
-          <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('diario-foto-camera').click()">📷 Tirar Foto</button>
-          <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('diario-foto-input').click()">🖼️ Escolher da Galeria</button>
+
+      <!-- ========================= -->
+      <!-- CENTRAL TÉCNICA -->
+      <!-- ========================= -->
+
+      <div id="nov-tab-docs" style="display:none">
+
+        <div class="card">
+
+          <h4>📂 Central Técnica de Documentos</h4>
+
+          <div class="folder">📂 Licitação</div>
+
+          <div class="folder">📂 Contrato</div>
+
+          <div class="folder">📂 Projetos</div>
+
+          <div class="folder">📂 Engenharia</div>
+
+          <div class="folder">📂 Segurança do Trabalho</div>
+
+          <div class="folder">📂 Planejamento</div>
+
+          <div class="folder">📂 Financeiro</div>
+
+          <div class="folder">📂 Diário de Obra</div>
+
+          <div class="folder">📂 Fotos</div>
+
+          <div class="folder">📂 Correspondências</div>
+
+          <div class="folder">📂 Outros</div>
+
         </div>
-        <div class="upload-area" id="diario-foto-upload-area" onclick="document.getElementById('diario-foto-input').click()" ondragover="handleDiarioFotoDragOver(event)" ondragleave="handleDiarioFotoDragLeave(event)" ondrop="handleDiarioFotoDrop(event)">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--gray400)" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p>Arraste fotos aqui ou <strong style="color:var(--blue)">clique para selecionar</strong></p>
-          <p style="font-size:11px">JPG, PNG, WEBP – várias fotos por registro, até 15MB cada</p>
+
+      </div>
+
+      <!-- CONTRATO -->
+
+      <div id="nov-tab-contrato" style="display:none">
+
+        <div class="card">
+
+          <h4>📑 Contratos Vinculados</h4>
+
+          <p>
+            Os contratos aparecerão aqui automaticamente
+            após salvar a obra.
+          </p>
+
         </div>
-        <input type="file" id="diario-foto-input" accept="image/*" multiple style="display:none" onchange="handleDiarioFotoUpload(event)">
-        <input type="file" id="diario-foto-camera" accept="image/*" capture="environment" style="display:none" onchange="handleDiarioFotoUpload(event)">
-        <div class="diario-fotos-grid" id="diario-fotos-preview"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarDiario()">💾 Salvar Registro</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Nova Atividade Cronograma -->
-<div class="modal-overlay" id="modal-nova-atividade">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="crono-modal-title">Nova Atividade</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="crono-edit-id">
-      <div class="form-group"><label class="form-label">Nome da Atividade *</label><input class="form-input" id="crono-nome" placeholder="Ex: Reforma Banheiros – Bloco A"></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Obra *</label><select class="form-input" id="crono-obra"></select></div>
-        <div class="form-group"><label class="form-label">Etapa</label><input class="form-input" id="crono-etapa" placeholder="Ex: Revestimentos"></div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Início Planejado</label><input class="form-input" id="crono-inicio" type="date"></div>
-        <div class="form-group"><label class="form-label">Fim Planejado</label><input class="form-input" id="crono-fim" type="date"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Progresso (%)</label><input class="form-input" id="crono-progresso" type="number" placeholder="0" min="0" max="100"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="crono-status"><option>Não Iniciada</option><option>Em Andamento</option><option>Concluída</option><option>Atrasada</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Responsável</label><input class="form-input" id="crono-responsavel" placeholder="Nome do responsável"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarAtividade()">💾 Salvar Atividade</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Novo Contrato -->
-<div class="modal-overlay" id="modal-novo-contrato">
-  <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="ct-modal-title">Novo Contrato</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="ct-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Número do Contrato *</label><input class="form-input" id="ct-numero" placeholder="Ex: CT-2025-006"></div>
-        <div class="form-group"><label class="form-label">Categoria</label><select class="form-input" id="ct-categoria"><option>Reforma Geral</option><option>Elétrica</option><option>Hidráulica</option><option>Revestimento</option><option>Pintura</option><option>Limpeza</option><option>Outros</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Fornecedor *</label><input class="form-input" id="ct-fornecedor" placeholder="Razão social do fornecedor"></div>
-        <div class="form-group"><label class="form-label">CNPJ</label><input class="form-input" id="ct-cnpj" placeholder="00.000.000/0000-00"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Objeto do Contrato</label><textarea class="form-input" id="ct-objeto" rows="2" placeholder="Descreva o objeto do contrato..."></textarea></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="ct-obra"></select></div>
-        <div class="form-group"><label class="form-label">Forma de Pagamento</label><select class="form-input" id="ct-pagamento"><option>Medido</option><option>Mensal</option><option>À Vista</option><option>Parcelado</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Valor (R$) *</label><input class="form-input" id="ct-valor" type="number" placeholder="0.00" min="0"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="ct-status"><option value="Ativo">Ativo</option><option value="A Vencer">A Vencer</option><option value="Vencido">Vencido</option><option value="Encerrado">Encerrado</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Data de Início</label><input class="form-input" id="ct-inicio" type="date"></div>
-        <div class="form-group"><label class="form-label">Data de Término</label><input class="form-input" id="ct-termino" type="date"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarContrato()">💾 Salvar Contrato</button>
-    </div>
-  </div>
-</div>
+      <!-- FINANCEIRO -->
 
-<!-- Modal Novo Documento -->
-<div class="modal-overlay" id="modal-novo-doc">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="doc-modal-title">Novo Documento</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="doc-edit-id">
-      <div class="form-group"><label class="form-label">Nome do Documento *</label><input class="form-input" id="doc-nome" placeholder="Ex: Projeto Elétrico – Bloco A"></div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Categoria</label><select class="form-input" id="doc-categoria"><option>Projeto</option><option>Contrato</option><option>Licença</option><option>Medição</option><option>Foto</option><option>Outros</option></select></div>
-        <div class="form-group"><label class="form-label">Obra</label><select class="form-input" id="doc-obra"></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Versão</label><input class="form-input" id="doc-versao" placeholder="Ex: v1.0" value="v1.0"></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="doc-status"><option value="Pendente">Pendente</option><option value="Aprovado">Aprovado</option><option value="Rejeitado">Rejeitado</option></select></div>
-      </div>
-      <div class="form-group"><label class="form-label">Responsável</label><input class="form-input" id="doc-responsavel" placeholder="Nome do responsável"></div>
-      <div class="form-group">
-        <label class="form-label">Arquivo</label>
-        <div class="upload-area" onclick="document.getElementById('doc-modal-file').click()">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--gray400)" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <p>Clique para selecionar arquivo</p>
-          <p id="doc-modal-file-name" style="color:var(--blue);font-size:12px"></p>
+      <div id="nov-tab-financeiro" style="display:none">
+
+        <div class="card">
+
+          <h4>💰 Financeiro</h4>
+
+          <p>
+            Resumo financeiro da obra.
+          </p>
+
         </div>
-        <input type="file" id="doc-modal-file" style="display:none" onchange="handleDocModalFile(event)">
+
       </div>
-      <div class="form-group"><label class="form-label">Observações</label><textarea class="form-input" id="doc-obs" rows="2" placeholder="Observações sobre o documento..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarDocumento()">💾 Salvar Documento</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Novo Usuário -->
-<div class="modal-overlay" id="modal-novo-usuario">
-  <div class="modal">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600" id="usr-modal-title">Novo Usuário</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <input type="hidden" id="usr-edit-id">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Nome *</label><input class="form-input" id="usr-nome" placeholder="Nome completo"></div>
-        <div class="form-group"><label class="form-label">E-mail *</label><input class="form-input" id="usr-email" type="email" placeholder="email@empresa.com.br"></div>
+      <!-- EQUIPE -->
+
+      <div id="nov-tab-equipe" style="display:none">
+
+        <div class="card">
+
+          <h4>👷 Equipe</h4>
+
+          <p>
+            Colaboradores vinculados à obra.
+          </p>
+
+        </div>
+
       </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Perfil</label><select class="form-input" id="usr-perfil"><option>Administrador</option><option>Engenharia</option><option>Financeiro</option><option>RH</option><option>Mestre de Obra</option><option>Almoxarifado</option><option>Visualização</option></select></div>
-        <div class="form-group"><label class="form-label">Status</label><select class="form-input" id="usr-status"><option value="Ativo">Ativo</option><option value="Inativo">Inativo</option></select></div>
+
+      <!-- OBSERVAÇÕES -->
+
+      <div id="nov-tab-obs" style="display:none">
+
+        <div class="form-group">
+
+          <label>Observações</label>
+
+          <textarea
+            class="form-input"
+            id="obra-objeto"
+            rows="8">
+          </textarea>
+
+        </div>
+
       </div>
-      <div class="form-group"><label class="form-label">Senha Inicial</label><input class="form-input" id="usr-senha" type="password" placeholder="Mínimo 6 caracteres"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="salvarUsuario()">💾 Salvar Usuário</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Recuperar Senha -->
-<div class="modal-overlay" id="modal-forgot-pwd">
-  <div class="modal" style="max-width:400px">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600">Recuperar Senha</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body">
-      <p style="font-size:13px;color:var(--gray600);margin-bottom:16px">Digite seu e-mail para receber as instruções de recuperação de senha.</p>
-      <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" id="forgot-email" type="email" placeholder="seu@email.com"></div>
-      <div class="alert alert-info" style="font-size:12px">ℹ️ Em modo local, a recuperação é demonstrativa. A credencial padrão é: <strong>admin@mbsolucoes.com.br</strong> / <strong>mbsolucoes2025</strong></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="enviarRecuperacao()">📧 Enviar</button>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Visualizar Registro Diário -->
-<div class="modal-overlay" id="modal-view-diario">
-  <div class="modal modal-lg">
-    <div class="modal-header"><h3 style="font-size:16px;font-weight:600">Detalhes do Registro</h3><button class="btn btn-ghost btn-sm" onclick="closeModal()">✕</button></div>
-    <div class="modal-body" id="view-diario-content"></div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">Fechar</button>
-      <button class="btn btn-primary" onclick="imprimirDiario()">🖨️ Imprimir</button>
-    </div>
-  </div>
-</div>
 
-<!-- Lightbox de fotos do Diário de Obra -->
-<div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) fecharLightbox()">
-  <button class="lightbox-close" onclick="fecharLightbox()" title="Fechar">✕</button>
-  <div class="lightbox-mid">
-    <button class="lightbox-nav" onclick="lightboxNav(-1)" title="Anterior">‹</button>
-    <img id="lightbox-img" src="" alt="Foto do registro">
-    <button class="lightbox-nav" onclick="lightboxNav(1)" title="Próxima">›</button>
+      <button
+        class="btn btn-ghost"
+        onclick="closeModal()">
+
+        Cancelar
+
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="salvarObra()">
+
+        💾 Salvar Obra
+
+      </button>
+
+    </div>
+
   </div>
-  <div class="lightbox-caption" id="lightbox-caption"></div>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <script src="database/storage.js"></script>
